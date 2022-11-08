@@ -5,7 +5,7 @@ display: flex;
 justify-content: space-evenly;
 flex-wrap: wrap;
 width: 100%;
-padding-top: 20vh;
+padding-top: 15vh;
 `
 export const Li = styled.li`
 list-style: none;

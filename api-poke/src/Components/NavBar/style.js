@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Lupa from "../../assets/search.png"
 
 export const Header = styled.header`
 position: fixed;
@@ -11,6 +12,10 @@ display: flex;
 justify-content: space-between;
 padding: 1vh 6vw;
 background-color: #000d80;
+margin: 0 auto;
+max-width: 1000px;
+width: 100%;
+align-items: center;
 `
 
 export const Img = styled.img`
@@ -23,13 +28,17 @@ height: 5em;
 export const Search = styled.input`
 position: absolute;
 height: 6vh;
-top: 2.5vh;
-right: 3vw;
+top: .5vh;
+right: 15vw;
 border: none;
 border-radius: 3%;
-margin: 3vh 0;
-padding: 0 2vw;
+margin: 3vh 2vw;
+padding: 0 4vw;
 background-color: #D8D8D8;
+background-image: url(${Lupa});
+background-size: 1.5vw;
+background-repeat: no-repeat;
+background-position: 1vh;
 font-size: 1.2rem;
 caret-color: #000d80;
 :hover{
@@ -41,11 +50,13 @@ caret-color: #000d80;
 :focus{
     outline: 0;
 }
+@media screen and (max-width: 890px){
+    background-size: 2vw;
+}
+@media screen and (max-width: 890px){
+    background-size: 2.5vw;
+}
 @media screen and (max-width: 717px){
     width: 40vw;
 }
-`
-export const Ico = styled.figure`
-position: relative;
-top: 7vh;
 `

@@ -17,4 +17,10 @@ export const GlobalStyle = createGlobalStyle`
   ::-webkit-scrollbar-track{
     background: white;
   }
-`;
+  body{
+    margin: 0 auto;
+    max-width: 1000px;
+    width: 100%;
+    align-items: center;
+  }
+`
