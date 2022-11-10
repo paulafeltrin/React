@@ -15,14 +15,17 @@ export default function Nasa(){
 
   return(
     <>
+      <S.GlobalStyle />
       <S.H1>{dados.title}</S.H1>
-      <S.Data>{dados.date}</S.Data>
+      <S.Div>
+          <S.Data>{dados.date}</S.Data>
+      </S.Div>
       <S.P>{dados.explanation}</S.P>
-      <S.P>{dados.media_type}</S.P>
+      <S.Dado>{dados.media_type}</S.Dado>
       {
         dados.media_type === 'video' ? 
           <S.Iframe src={dados.url} frameborder="0"></S.Iframe> :
-          <figure><img src={dados.url} alt={dados.url} /></figure>
+          <S.Fig><img src={dados.url} alt={dados.url} /></S.Fig>
      }
       <S.Copy>Copyright: {dados.copyright}</S.Copy>
     </>
