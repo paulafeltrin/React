@@ -1,13 +1,12 @@
-import React from 'react'
-import Tarefas from "./Home/Home"
+import React from "react";
+import Home from "../src/Home/Home"
+import { GlobalStyle } from "./Global/global";
 
-export default class App extends React.Component{
-
-  render(){
-    return(
-      <>
-        <Tarefas />
-      </>
-    )
-  }
+export default function App(){
+  return(
+    <>
+      <GlobalStyle/>
+      <Home />
+    </>
+  )
 }

@@ -1,69 +1,68 @@
-import React,{useState} from 'react'
-// import styled from 'styled-components';
-// import { AiOutlineDelete } from "react-icons/ai";
-// import { FiDelete } from "react-icons/fi";
+import { useEffect, useState} from 'react'
+import * as S from './style'
+import Form from '../Components/Form'
+import Todo from '../Components/Todo'
 
-export default function Todo(){
+export default function Home() {
+    let [ToDoArray, setToDoArray] = useState([]);
+    let [In,setIn]=useState(-1);
+    let [Str,setStr]=useState('');
 
-const [input, setInput] = useState()
-const [List, setList] = useState([])
+    let CollectInput = (Value) => {
+        if(Str!==''){
+            let Temp=[...ToDoArray];
+            Temp[In]=Value;
+            localStorage.setItem("Todo",JSON.stringify(Temp));
+            setToDoArray(Temp);
 
-const Add = () =>{
-    let detalhandoInput = {
-      value: input,
-      id: Date.now()
+            setStr('');
+            setIn(-1);
+        }
+        else{
+            let Temp=[Value,...ToDoArray];
+            localStorage.setItem("Todo",JSON.stringify(Temp));
+            setToDoArray(Temp);
+        }
     }
-    if(input !== " " && input !== ""){
-        setList([...List, detalhandoInput])
-        setInput("")
+
+    let Delete=(Ind)=>{
+        let confirm = window.confirm('Tem certeza que deseja deletar a tarefa?');
+        if (confirm) {
+            let newArr=[...ToDoArray];
+            newArr.splice(Ind,1);
+            localStorage.setItem("Todo",JSON.stringify(newArr));
+            setToDoArray(newArr);
+        }
     }
-  } 
-
-function Del(rastreador){
-  let confirm = window.confirm('Tem certeza que deseja deletar a tarefa?');
-  if (confirm) {
-    const listaFiltrada = List.filter(item => item.id !== rastreador)
-    setList(listaFiltrada)
-  }
-}
-
-function Edit(rastreador){
-  let confirm = window.confirm('Tem certeza que deseja editar a tarefa?');
-  if (confirm) {
-    const listaFiltrada = List.filter(rastreador => (
-      <div>
-        <h2>Editando tarefa</h2>
-        <input type="text" />
-      </div>
-    ))
-    // const listaFiltrada = List.filter(item => item.id)
-    setList(listaFiltrada)
-  }
-}
-
-function ClearAll(id){
-  let confirm = window.confirm('Tem certeza que deseja deletar todas as tarefas?');
-  if (confirm) {
-    const listaFiltrada = List.filter(item => item.id === id)
-    setList(listaFiltrada)
-  }
-}
-  return(
-    <div>
-      <h1>LISTA TO-DO</h1>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <button title='Adicionar item' onClick={() =>{Add()}}>ADD</button>
-        <input value={input} onChange={e=>setInput(e.target.value)} />
-        {List.map((item) => (
-            <li>
-                {item.value}
-                <button title='Apagar item' onClick={() =>{Del(item.id)}}>Delete</button>
-                <button title='Editar item' onClick={() =>{Edit(item.id)}}>Editar</button>
-            </li>
-        ))}
-        <button title='Apagar todos os itens' onClick={() =>{ClearAll()}}>Delete TODOS</button>
-      </form>
-    </div>
     
-  )
+    let EditText=(Ind,Elem)=>{
+        let confirm = window.confirm('Tem certeza que deseja deletar a tarefa?');
+        if (confirm) {
+            setIn(Ind);
+            setStr(Elem);          
+        };
+    }
+    useEffect(()=>{
+        let Ar=JSON.parse(localStorage.getItem("Todo"));
+        if(Ar)
+        setToDoArray(Ar);
+    },[])
+
+    return (
+        <S.Body>
+            <S.H1>ToDo App</S.H1>
+            <div>
+                <Form
+                onSubmit={(e) => e.preventDefault()}
+                Take={CollectInput}
+                String={Str===''? '':Str}
+                />
+                { ToDoArray.length === 0 ?
+                <div role="alert">
+                        No To Do Available Yet !!
+                </div> : <Todo GetTodos={ToDoArray} Del={Delete} Edit={EditText}/>
+                }
+            </div>
+        </S.Body>
+    )
 }
