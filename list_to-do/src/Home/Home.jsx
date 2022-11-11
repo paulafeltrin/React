@@ -53,7 +53,6 @@ export default function Home() {
             <S.H1>ToDo App</S.H1>
             <div>
                 <Form
-                onSubmit={(e) => e.preventDefault()}
                 Take={CollectInput}
                 String={Str===''? '':Str}
                 />
