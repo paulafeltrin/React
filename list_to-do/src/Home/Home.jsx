@@ -24,7 +24,7 @@ export default function Home() {
             setToDoArray(Temp);
         }
     }
-
+ 
     let Delete=(Ind)=>{
         let confirm = window.confirm('Tem certeza que deseja deletar a tarefa?');
         if (confirm) {
