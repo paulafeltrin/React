@@ -58,9 +58,8 @@ export default function Home() {
                 String={Str===''? '':Str}
                 />
                 { ToDoArray.length === 0 ?
-                <div role="alert">
-                        No To Do Available Yet !!
-                </div> : <Todo GetTodos={ToDoArray} Del={Delete} Edit={EditText}/>
+                <S.Alert role="alert"> Nenhuma atividade prevista até o momento!
+                </S.Alert> : <Todo GetTodos={ToDoArray} Del={Delete} Edit={EditText}/>
                 }
             </div>
         </S.Body>
