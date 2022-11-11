@@ -8,7 +8,6 @@ export default function Form(Props){
         setText(Inp);
     }
     let HandleClick=(event)=>{
-        console.log(event.key);
         if(event.key === 'Enter'){
             event.preventDefault();
             Text===''?alert("Não identificamos nenhum Item no Input"):Props.Take(Text)
